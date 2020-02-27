@@ -38,8 +38,12 @@ class App extends Component {
         <header>
               <h1><a href="/" onClick={function(e){
                 console.log(e);
+                // this.state.mode= 'Weolcome'; -> state를 components로 사용하기 위해 onClick의 함수를 .bind(this)로 묶어줌 ->state가 변한것을 모르기때문에 mode를 적용
+                this.setState({
+                  mode: 'Welcome'
+                })
                 e.preventDefault();//이벤트의 기본동작(reload)를 막는 방법
-              }}>{this.state.subject.title}</a></h1>
+              }.bind(this)}>{this.state.subject.title}</a></h1>
               {this.state.subject.sub}
           </header>
         <TOC data={this.state.contents}></TOC>
