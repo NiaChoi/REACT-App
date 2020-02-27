@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       mode: 'read',
+      selected_content_id: 0,
       subject: {title:'WEB', sub:'World wide Web!'},
       welcome:{title:'Welcome', desc:'Hello, React!'},
       contents: [
@@ -27,8 +28,17 @@ class App extends Component {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
     } else if(this.state.mode === 'read'){
-      _title = this.state.contents[0].title;
-      _desc = this.state.contents[0].desc;
+      var i = 0;
+      while(i < this.state.contents.length){
+        var data = this.state.contents[i];
+        if(data.id === this.state.selected_content_id){
+          _title = data.title;
+          _desc = data.desc;
+          break;
+        }
+        i = i + 1; 
+      }
+      
     }
     return (
       <div className="App">
@@ -40,20 +50,15 @@ class App extends Component {
         }.bind(this)}
         >
         </Subject>
-
-        {/* <header>
-              <h1><a href="/" onClick={function(e){
-                console.log(e);
-                // this.state.mode= 'Weolcome'; -> state를 components로 사용하기 위해 onClick의 함수를 .bind(this)로 묶어줌 ->state가 변한것을 모르기때문에 mode를 적용
-                this.setState({
-                  mode: 'Welcome'//객체형태
-                })
-                e.preventDefault();//이벤트의 기본동작(reload)를 막는 방법
-              }.bind(this)}>{this.state.subject.title}</a></h1>
-              {this.state.subject.sub}
-          </header> */}
-        
-        <TOC data={this.state.contents}></TOC>
+        <TOC 
+        onChangePage={function(id){
+          // alert('hi-!');
+          this.setState({
+            mode:'read',
+            selected_content_id: Number(id)//id를 문자가 아닌숫자로 인식하게 하는 명령어->Number
+          });
+        }.bind(this)}
+        data={this.state.contents}></TOC>
         <Content title = {_title} desc = {_desc} ></Content>
       </div>
     );
