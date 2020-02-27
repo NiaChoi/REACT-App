@@ -8,7 +8,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      mode: 'read',
       subject: {title:'WED', sub:'World wide Web!'},
+      welcome:{title:'Welcome', desc:'Hello, React!'},
       contents: [
         {id:1, title:'HTML', desc:'HTML is for information.'},
         {id:2, title:'CSS', desc:'CSS is for Design.'},
@@ -16,7 +18,17 @@ class App extends Component {
       ]
     }
   }
+  //props, state 값이 변하면 render함수를 불러옴.
   render() {
+    console.log('App render');
+    var _title, _desc = null;
+    if(this.state.mode === 'Welcome'){
+      _title = this.state.welcome.title;
+      _desc = this.state.welcome.desc;
+    } else if(this.state.mode === 'read'){
+      _title = this.state.contents[0].title;
+      _desc = this.state.contents[0].desc;
+    }
     return (
       <div className="App">
         <Subject 
@@ -24,7 +36,7 @@ class App extends Component {
         sub = {this.state.subject.sub}>
         </Subject>
         <TOC data={this.state.contents}></TOC>
-        <Content title = "HTML" desc = "HTML is HyperText Markup Language." ></Content>
+        <Content title = {_title} desc = {_desc} ></Content>
       </div>
     );
   }
