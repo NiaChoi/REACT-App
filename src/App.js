@@ -4,6 +4,7 @@ import Content from "./components/Content";
 import Subject from "./components/Subject";
 import './App.css';
 
+//생성자 constructor
 class App extends Component {
   constructor(props){
     super(props);
@@ -31,21 +32,27 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {/* <Subject 
+        <Subject 
         title = {this.state.subject.title} 
-        sub = {this.state.subject.sub}>
-        </Subject> */}
-        <header>
+        sub = {this.state.subject.sub}
+        onChangePage={function(){
+          this.setState({mode:'Welcome'});
+        }.bind(this)}
+        >
+        </Subject>
+
+        {/* <header>
               <h1><a href="/" onClick={function(e){
                 console.log(e);
                 // this.state.mode= 'Weolcome'; -> state를 components로 사용하기 위해 onClick의 함수를 .bind(this)로 묶어줌 ->state가 변한것을 모르기때문에 mode를 적용
                 this.setState({
-                  mode: 'Welcome'
+                  mode: 'Welcome'//객체형태
                 })
                 e.preventDefault();//이벤트의 기본동작(reload)를 막는 방법
               }.bind(this)}>{this.state.subject.title}</a></h1>
               {this.state.subject.sub}
-          </header>
+          </header> */}
+        
         <TOC data={this.state.contents}></TOC>
         <Content title = {_title} desc = {_desc} ></Content>
       </div>
