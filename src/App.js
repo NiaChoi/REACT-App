@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       mode: 'read',
-      subject: {title:'WED', sub:'World wide Web!'},
+      subject: {title:'WEB', sub:'World wide Web!'},
       welcome:{title:'Welcome', desc:'Hello, React!'},
       contents: [
         {id:1, title:'HTML', desc:'HTML is for information.'},
@@ -31,10 +31,17 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Subject 
+        {/* <Subject 
         title = {this.state.subject.title} 
         sub = {this.state.subject.sub}>
-        </Subject>
+        </Subject> */}
+        <header>
+              <h1><a href="/" onClick={function(e){
+                console.log(e);
+                e.preventDefault();//이벤트의 기본동작(reload)를 막는 방법
+              }}>{this.state.subject.title}</a></h1>
+              {this.state.subject.sub}
+          </header>
         <TOC data={this.state.contents}></TOC>
         <Content title = {_title} desc = {_desc} ></Content>
       </div>
