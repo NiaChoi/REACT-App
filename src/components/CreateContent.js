@@ -9,13 +9,13 @@ class CreateContent extends Component{
                 onSubmit={function(e){
                   e.preventDefault();
                   this.props.onSubmit(
-                    e.target.desc.value,
-                    e.target.desc.value,
+                    e.target.title.value,
+                    e.target.desc.value
                   );
                   alert('Submit!');
                 }.bind(this)}
                 >
-                <p><input type="text" name ="tilte" placeholder="title"></input></p>
+                <p><input type="text" name ="title" placeholder="title"></input></p>
                 <p>
                   <textarea name="desc" placeholder="description"></textarea>
                 </p>
