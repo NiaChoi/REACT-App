@@ -25,9 +25,11 @@ class App extends Component {
     }
   }
   //props, state 값이 변하면 render함수를 불러옴.
+  
   render() {
     console.log('App render');
     var _title, _desc, _article = null;
+
     if(this.state.mode === 'Welcome'){
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
@@ -43,6 +45,7 @@ class App extends Component {
          }
          i = i + 1; 
         }
+      
         _article = <ReadContent title = {_title} desc = {_desc} ></ReadContent>
       }else if(this.state.mode === 'create'){
       _article = <CreateContent onSubmit={function(_title, _desc){
@@ -58,6 +61,8 @@ class App extends Component {
         console.log(_title, _desc);
       }.bind(this)}></CreateContent>
     }
+
+
     return (
       <div className="App">
         <Subject 
