@@ -8,6 +8,10 @@ class CreateContent extends Component{
               <form action="/create_process" method="post"
                 onSubmit={function(e){
                   e.preventDefault();
+                  this.props.onSubmit(
+                    e.target.desc.value,
+                    e.target.desc.value,
+                  );
                   alert('Submit!');
                 }.bind(this)}
                 >
