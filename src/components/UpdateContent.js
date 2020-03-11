@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
  
 class UpdateContent extends Component{
-    render(){
+  constructor(props){
+    super(props);
+    this.state = {
+      title: this.props.data.title,
+      desc:this.props.data.desc
+    }
+  }  
+  render(){
       console.log('UpdateContent render');
       
       return(
@@ -14,12 +21,25 @@ class UpdateContent extends Component{
                     e.target.title.value,
                     e.target.desc.value
                   );
-                  alert('Submit!');
                 }.bind(this)}
                 >
-                <p><input type="text" name ="title" placeholder="title"></input></p>
                 <p>
-                  <textarea name="desc" placeholder="description"></textarea>
+                  <input 
+                  type="text" 
+                  name ="title" 
+                  placeholder="title"
+                  value= {this.state.title}
+                  onChange={function(e){
+                    this.setState({title:e.target.value})
+                  }.bind(this)}
+                  ></input>
+                  </p>
+                <p>
+                <textarea 
+                onChange={function(e){
+                    this.setState({desc:e.target.value})
+                  }.bind(this)}
+                  name="desc" placeholder="description" value={this.state.desc}></textarea>
                 </p>
                 <p>
                   <input type="submit"></input>
